@@ -32,13 +32,26 @@ fun ScaffoldScreen() {
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MyScaffold() {
+    val scaffoldState: ScaffoldState = rememberScaffoldState()
+    val scope: CoroutineScope = rememberCoroutineScope()
 
+    Scaffold (
+        scaffoldState = scaffoldState,
+        contentColor = colorResource(id = R.color.colorPrimary),
+        content = {
+            MyRow()
+        },
+        topBar = { MyTopAppBar(scaffoldState = scaffoldState, scope = scope) },
+        bottomBar = { MyBottomAppBar() },
+        drawerContent = { MyColumn() }
+    )
 }
 
 @Composable
-fun MyTopAppBar(scaffoldState: ScaffoldState) {
+fun MyTopAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope) {
 
 }
 
